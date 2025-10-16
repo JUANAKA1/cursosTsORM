@@ -1,6 +1,6 @@
 import app from "./app";
 import { AppDataSource } from "./db/connection";
-const PORT = 9000;
+const PORT = 3000;
 
 async function main() {
   try {
