@@ -4,9 +4,9 @@ import {
   CreateDateColumn,
   Entity,
   JoinColumn,
-  JoinTable,
   ManyToMany,
-  OneToOne,
+  ManyToOne,
+  JoinTable,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
@@ -16,25 +16,31 @@ import { Student } from "./studentModel";
 @Entity()
 export class Course extends BaseEntity {
   @PrimaryGeneratedColumn()
-  id: number;
+  id!: number;
+
   @Column()
-  nombre: string;
+  nombre!: string;
+
   @Column("text")
-  descripcion: string;
+  descripcion!: string;
+
   @CreateDateColumn()
-  createdAt: Date;
+  createdAt!: Date;
+
   @UpdateDateColumn()
-  updatedAt: Date;
+  updatedAt!: Date;
 
-  @OneToOne(() => Teacher, (teacher) => teacher.courses)
+  // ✅ Relación correcta con Teacher
+  @ManyToOne(() => Teacher, (teacher) => teacher.courses)
   @JoinColumn({ name: "teacher_id" })
-  teacher: Teacher;
+  teacher!: Teacher;
 
+  // ✅ Relación con Student (Muchos a Muchos)
   @ManyToMany(() => Student)
   @JoinTable({
     name: "courses_students",
     joinColumn: { name: "course_id" },
     inverseJoinColumn: { name: "student_id" },
   })
-  students: Student[];
+  students!: Student[];
 }

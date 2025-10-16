@@ -12,23 +12,32 @@ import { Course } from "./courseModel";
 @Entity()
 export class Teacher extends BaseEntity {
   @PrimaryGeneratedColumn()
-  id: number;
+  id!: number;
+
   @Column()
-  dni: string;
+  dni!: string;
+
   @Column()
-  nombre: string;
+  nombre!: string;
+
   @Column()
-  apellido: string;
+  apellido!: string;
+
   @Column()
-  email: string;
+  email!: string;
+
   @Column()
-  profesion: string;
+  profesion!: string;
+
   @Column()
-  telefono: string;
+  telefono!: string;
+
   @CreateDateColumn()
-  createdAt: Date;
+  createdAt!: Date;
+
   @UpdateDateColumn()
-  updatedAt: Date;
+  updatedAt!: Date;
+
   @OneToMany(() => Course, (course) => course.teacher)
-  courses: Course[];
+  courses!: Course[];
 }
